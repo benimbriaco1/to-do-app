@@ -4,16 +4,23 @@ import tkinter as tk
 # For calendar
 from tkcalendar import Calendar 
 
+# Global variable for seeing if there is a listbox already present
+listbox_present = False;
 # Function for displaying the date
 def show_date(event):
     selected_date = cal.get_date()
     label.config(text=f"Selected Date: {selected_date}")
+    show_list()
 
 # For showing the list
 def show_list():
-    # Create listbox 
-    lb = tk.Listbox(root)
-    lb.pack()
+    # Global call to variable
+    global listbox_present
+    if not listbox_present:
+        # Then create it
+        lb = tk.Listbox(root)
+        listbox_present = True;
+        lb.pack()
 
 # Create the window, giving it a title, and its dimensions
 root = Tk()
@@ -36,8 +43,8 @@ label.pack(pady=10)
 cal.bind("<<CalendarSelected>>", show_date)
 
 # Adding a button for adding a task
-add = tk.Button(root, text="+", font="Arial 15", command=show_list)
-add.place(x=55, y=282)
+add = tk.Button(root, text="+", font="Arial 15")
+add.place(x=45, y=282)
 
 # Executing the GUI
 root.mainloop()
