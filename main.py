@@ -1,12 +1,19 @@
 # Tkinter used for GUI
-from tkinter import Tk
+from tkinter import Tk , Canvas
 import tkinter as tk
 # For calendar
 from tkcalendar import Calendar 
 
+# Function for displaying the date
 def show_date(event):
     selected_date = cal.get_date()
     label.config(text=f"Selected Date: {selected_date}")
+
+# For showing the list
+def show_list():
+    # Create listbox 
+    lb = tk.Listbox(root)
+    lb.pack()
 
 # Create the window, giving it a title, and its dimensions
 root = Tk()
@@ -18,15 +25,19 @@ root.configure(bg="LightSteelBlue2")
 # Adding a calendar
 cal = Calendar(root, selectmode="day", date_pattern="mm/dd/yy", 
 background="white", foreground = "green", firstweekday="sunday",
-font= "Arial 17")
+font= "Arial 18", disabledaybackground="green")
 cal.pack(pady=20)
 
 # Label for date
-label = tk.Label(root, text="Selected Date: ")
+label = tk.Label(root, text="Selected Date: ", font="Arial 18" )
 label.pack(pady=10)
 
 # Binding the show_date function
 cal.bind("<<CalendarSelected>>", show_date)
+
+# Adding a button for adding a task
+add = tk.Button(root, text="+", font="Arial 15", command=show_list)
+add.place(x=55, y=282)
 
 # Executing the GUI
 root.mainloop()
