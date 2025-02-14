@@ -1,1 +1,2 @@
-Making this so I can be better about completing assignments on time.
+Making this so I can be better about finishing assignments earlier.
+
