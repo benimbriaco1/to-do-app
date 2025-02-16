@@ -20,7 +20,12 @@ def show_list():
         # Then create it
         lb = tk.Listbox(root)
         listbox_present = True;
-        lb.pack()
+        lb.configure(background="lightblue", width=43, height = 15)
+        lb.pack(pady=10)
+
+# Function for adding entry
+def add_entry():
+    print("hi")
 
 # Create the window, giving it a title, and its dimensions
 root = Tk()
@@ -43,7 +48,7 @@ label.pack(pady=10)
 cal.bind("<<CalendarSelected>>", show_date)
 
 # Adding a button for adding a task
-add = tk.Button(root, text="+", font="Arial 15")
+add = tk.Button(root, text="+", font="Arial 15", command=add_entry)
 add.place(x=45, y=282)
 
 # Executing the GUI
