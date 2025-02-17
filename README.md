@@ -1,2 +1,1 @@
-Making this so I can be better about finishing assignments earlier.
-
+Tkinter python application.
