@@ -13,6 +13,7 @@ root.title("To-Do List")
 root.geometry('400x600')
 # Color
 root.configure(bg="LightSteelBlue2")
+lb = tk.Listbox(root)
 
 # Function for displaying the date
 def show_date(event):
@@ -25,7 +26,7 @@ def show_list():
     global listbox_present
     if not listbox_present:
         # Then create it
-        lb = tk.Listbox(root)
+        global lb
         # Change boolean
         listbox_present = True;
         lb.configure(background="lightblue", width=43, height = 15)
@@ -35,8 +36,19 @@ def show_list():
 def add_entry():
     # task_label.pack(pady=10)
     task_entry.pack(pady=10)
+    show_list()
     task = task_var.get()
-    print(task)
+    # Make sure entry isn't already present
+    if task: #if task is not empty
+        for i in range(lb.size()):
+            if(lb.get(i) == task):
+                print(f"{task} already added")
+                return  
+        lb.insert(tk.END, task)
+        print(task)
+        # Clear task entry
+        task_var.set("")
+
 
 # Variable for user input
 task_var=tk.StringVar()
@@ -52,7 +64,7 @@ label = tk.Label(root, text="Selected Date: ", font="Arial 18" )
 label.pack(pady=10)
 
 # Binding the show_date function
-cal.bind("<<CalendarSelected>>", show_date, show_list)
+cal.bind("<<CalendarSelected>>", show_date)
 
 # Label for entry
 # task_label = tk.Label(root, text="Add task")
