@@ -18,7 +18,6 @@ root.configure(bg="LightSteelBlue2")
 def show_date(event):
     selected_date = cal.get_date()
     label.config(text=f"Selected Date: {selected_date}")
-    show_list()
 
 # For showing the list
 def show_list():
@@ -34,13 +33,10 @@ def show_list():
 
 # Function for adding entry
 def add_entry():
-    task_label.pack(pady=10)
+    # task_label.pack(pady=10)
     task_entry.pack(pady=10)
-
-    task = task_var.get().strip()
-    if task:
-        print(f"added {task}")
-        task_var.set("")
+    task = task_var.get()
+    print(task)
 
 # Variable for user input
 task_var=tk.StringVar()
@@ -56,10 +52,10 @@ label = tk.Label(root, text="Selected Date: ", font="Arial 18" )
 label.pack(pady=10)
 
 # Binding the show_date function
-cal.bind("<<CalendarSelected>>", show_date)
+cal.bind("<<CalendarSelected>>", show_date, show_list)
 
 # Label for entry
-task_label = tk.Label(root, text="add task")
+# task_label = tk.Label(root, text="Add task")
 # Creating an entry
 task_entry = tk.Entry(root, textvariable=task_var, font=('calibre',12,'bold'))
 
